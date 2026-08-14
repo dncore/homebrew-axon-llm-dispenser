@@ -1,23 +1,23 @@
 cask "axon-llm-dispenser" do
-  version "0.3.1"
-  sha256 "9652e0575a7c7867a0266c239e13d80a329dd4496c876b37ce2cda6cbb22c9de"
+  version "0.3.2"
+  sha256 "f4bad087e974589a987be0a008b1a9c1c19cd54854e63f0dc6a7f7547d554c07"
 
   url "https://github.com/dncore/axon-llm-dispenser/releases/download/v#{version}/axon-llm-dispenser-macos-v#{version}.zip"
-  name "axon-llm-dispenser"
-  desc "把自有的 OpenAI 兼容网关一键接入 Codex / Reasonix / DeepSeek Harness / Claude Code / pi agent"
+  name "Axon"
+  desc "把自有的 OpenAI 兼容网关一键配置到各 Agent 工具"
   homepage "https://github.com/dncore/axon-llm-dispenser"
 
-  app "axon-llm-dispenser.app"
+  app "Axon.app"
 
   # 应用为 ad-hoc 签名(未公证):安装后自动移除 quarantine,避免 Gatekeeper 拦截
   postflight do
     system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/axon-llm-dispenser.app"]
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Axon.app"]
   end
 
   caveats <<~EOS
-    axon-llm-dispenser 为 ad-hoc 签名(未公证)。如仍被 Gatekeeper 拦截:
-      终端执行:  xattr -dr com.apple.quarantine "/Applications/axon-llm-dispenser.app"
+    Axon 为 ad-hoc 签名(未公证)。如仍被 Gatekeeper 拦截:
+      终端执行:  xattr -dr com.apple.quarantine "/Applications/Axon.app"
       或:        右键应用 → 打开 → 再点「打开」
   EOS
 
