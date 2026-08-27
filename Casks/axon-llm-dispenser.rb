@@ -1,6 +1,6 @@
 cask "axon-llm-dispenser" do
-  version "0.5.3"
-  sha256 "dd402ddba012b7ac350144e223f333ae0af35a76b41cf1074035916adeaa98f6"
+  version "0.5.4"
+  sha256 "c422cb29b2d17f72e38e3a60878c96db64679b1550823f72f5fbc87e40f02e2e"
 
   url "https://github.com/dncore/axon-llm-dispenser/releases/download/v#{version}/axon-llm-dispenser-macos-v#{version}.zip"
   name "Axon"
