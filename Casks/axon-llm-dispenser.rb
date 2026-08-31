@@ -1,6 +1,6 @@
 cask "axon-llm-dispenser" do
-  version "0.5.10"
-  sha256 "d5ee4f564b00ab283f038c4686766c27ef40d7dabecb59d7b0aaa1ab50a733da"
+  version "0.5.11"
+  sha256 "ecb9c2a4d1d8a7315e18abf366c3ce022b36cf8f44447bde73bd094b206f623c"
 
   url "https://github.com/dncore/axon-llm-dispenser/releases/download/v#{version}/axon-llm-dispenser-macos-v#{version}.zip"
   name "Axon"
@@ -8,6 +8,16 @@ cask "axon-llm-dispenser" do
   homepage "https://github.com/dncore/axon-llm-dispenser"
 
   app "Axon.app"
+
+  # 更新前先退出运行中的旧版(否则旧二进制仍在内存运行,brew 直接替换 bundle 后旧版继续跑)
+  preflight do
+    begin
+      system_command "/usr/bin/osascript", args: ["-e", 'tell application "Axon" to quit'], sudo: false
+      sleep 1
+    rescue
+      # 应用未运行 / 非 GUI 会话时忽略
+    end
+  end
 
   # 应用为 ad-hoc 签名(未公证):安装后自动移除 quarantine,避免 Gatekeeper 拦截
   postflight do
